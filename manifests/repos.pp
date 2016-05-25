@@ -8,7 +8,7 @@ class docker::repos {
   case $::osfamily {
     'Debian': {
       include apt
-      if $::operatingsystem == 'Debian' and $::lsbdistcodename == 'wheezy' {
+      if ($::operatingsystem == 'Debian' and $::lsbdistcodename == 'wheezy' and $docker::use_upstream_package_source) {
         include apt::backports
       }
       if ($docker::docker_cs) {
